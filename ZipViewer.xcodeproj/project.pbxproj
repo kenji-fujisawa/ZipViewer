@@ -6,43 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		CA3C79F12EC5AAC000D70764 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA3C79DB2EC5AABF00D70764 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA3C79E22EC5AABF00D70764;
-			remoteInfo = ZipViewer;
-		};
-		CA3C79FB2EC5AAC000D70764 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA3C79DB2EC5AABF00D70764 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA3C79E22EC5AABF00D70764;
-			remoteInfo = ZipViewer;
-		};
-/* End PBXContainerItemProxy section */
+/* Begin PBXBuildFile section */
+		CA3C7A1B2EC5AC1500D70764 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CA3C7A1A2EC5AC1500D70764 /* ZIPFoundation */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CA3C79E32EC5AABF00D70764 /* ZipViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZipViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA3C79F02EC5AAC000D70764 /* ZipViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZipViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA3C79FA2EC5AAC000D70764 /* ZipViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZipViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CA3C7A1F2EC5E30B00D70764 /* Exceptions for "ZipViewer" folder in "ZipViewer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CA3C79E22EC5AABF00D70764 /* ZipViewer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CA3C79E52EC5AABF00D70764 /* ZipViewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CA3C7A1F2EC5E30B00D70764 /* Exceptions for "ZipViewer" folder in "ZipViewer" target */,
+			);
 			path = ZipViewer;
-			sourceTree = "<group>";
-		};
-		CA3C79F32EC5AAC000D70764 /* ZipViewerTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ZipViewerTests;
-			sourceTree = "<group>";
-		};
-		CA3C79FD2EC5AAC000D70764 /* ZipViewerUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ZipViewerUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -52,20 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA3C79ED2EC5AAC000D70764 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA3C79F72EC5AAC000D70764 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				CA3C7A1B2EC5AC1500D70764 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				CA3C79E52EC5AABF00D70764 /* ZipViewer */,
-				CA3C79F32EC5AAC000D70764 /* ZipViewerTests */,
-				CA3C79FD2EC5AAC000D70764 /* ZipViewerUITests */,
 				CA3C79E42EC5AABF00D70764 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,8 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				CA3C79E32EC5AABF00D70764 /* ZipViewer.app */,
-				CA3C79F02EC5AAC000D70764 /* ZipViewerTests.xctest */,
-				CA3C79FA2EC5AAC000D70764 /* ZipViewerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,56 +83,11 @@
 			);
 			name = ZipViewer;
 			packageProductDependencies = (
+				CA3C7A1A2EC5AC1500D70764 /* ZIPFoundation */,
 			);
 			productName = ZipViewer;
 			productReference = CA3C79E32EC5AABF00D70764 /* ZipViewer.app */;
 			productType = "com.apple.product-type.application";
-		};
-		CA3C79EF2EC5AAC000D70764 /* ZipViewerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA3C7A072EC5AAC000D70764 /* Build configuration list for PBXNativeTarget "ZipViewerTests" */;
-			buildPhases = (
-				CA3C79EC2EC5AAC000D70764 /* Sources */,
-				CA3C79ED2EC5AAC000D70764 /* Frameworks */,
-				CA3C79EE2EC5AAC000D70764 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CA3C79F22EC5AAC000D70764 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CA3C79F32EC5AAC000D70764 /* ZipViewerTests */,
-			);
-			name = ZipViewerTests;
-			packageProductDependencies = (
-			);
-			productName = ZipViewerTests;
-			productReference = CA3C79F02EC5AAC000D70764 /* ZipViewerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CA3C79F92EC5AAC000D70764 /* ZipViewerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA3C7A0A2EC5AAC000D70764 /* Build configuration list for PBXNativeTarget "ZipViewerUITests" */;
-			buildPhases = (
-				CA3C79F62EC5AAC000D70764 /* Sources */,
-				CA3C79F72EC5AAC000D70764 /* Frameworks */,
-				CA3C79F82EC5AAC000D70764 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CA3C79FC2EC5AAC000D70764 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CA3C79FD2EC5AAC000D70764 /* ZipViewerUITests */,
-			);
-			name = ZipViewerUITests;
-			packageProductDependencies = (
-			);
-			productName = ZipViewerUITests;
-			productReference = CA3C79FA2EC5AAC000D70764 /* ZipViewerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -176,14 +102,6 @@
 					CA3C79E22EC5AABF00D70764 = {
 						CreatedOnToolsVersion = 26.1;
 					};
-					CA3C79EF2EC5AAC000D70764 = {
-						CreatedOnToolsVersion = 26.1;
-						TestTargetID = CA3C79E22EC5AABF00D70764;
-					};
-					CA3C79F92EC5AAC000D70764 = {
-						CreatedOnToolsVersion = 26.1;
-						TestTargetID = CA3C79E22EC5AABF00D70764;
-					};
 				};
 			};
 			buildConfigurationList = CA3C79DE2EC5AABF00D70764 /* Build configuration list for PBXProject "ZipViewer" */;
@@ -195,34 +113,21 @@
 			);
 			mainGroup = CA3C79DA2EC5AABF00D70764;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CA3C7A192EC5AC1500D70764 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CA3C79E42EC5AABF00D70764 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				CA3C79E22EC5AABF00D70764 /* ZipViewer */,
-				CA3C79EF2EC5AAC000D70764 /* ZipViewerTests */,
-				CA3C79F92EC5AAC000D70764 /* ZipViewerUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA3C79E12EC5AABF00D70764 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA3C79EE2EC5AAC000D70764 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA3C79F82EC5AAC000D70764 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,34 +144,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA3C79EC2EC5AAC000D70764 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA3C79F62EC5AAC000D70764 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CA3C79F22EC5AAC000D70764 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA3C79E22EC5AABF00D70764 /* ZipViewer */;
-			targetProxy = CA3C79F12EC5AAC000D70764 /* PBXContainerItemProxy */;
-		};
-		CA3C79FC2EC5AAC000D70764 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA3C79E22EC5AABF00D70764 /* ZipViewer */;
-			targetProxy = CA3C79FB2EC5AAC000D70764 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CA3C7A022EC5AAC000D70764 /* Debug */ = {
@@ -394,6 +272,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZipViewer/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -414,13 +294,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.1;
 			};
 			name = Debug;
@@ -436,6 +317,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZipViewer/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -456,111 +339,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Release;
-		};
-		CA3C7A082EC5AAC000D70764 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				MACOSX_DEPLOYMENT_TARGET = 26.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.uhimania.ZipViewerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipViewer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ZipViewer";
-				XROS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		CA3C7A092EC5AAC000D70764 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				MACOSX_DEPLOYMENT_TARGET = 26.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.uhimania.ZipViewerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipViewer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ZipViewer";
-				XROS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Release;
-		};
-		CA3C7A0B2EC5AAC000D70764 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				MACOSX_DEPLOYMENT_TARGET = 26.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.uhimania.ZipViewerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = ZipViewer;
-				XROS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		CA3C7A0C2EC5AAC000D70764 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				MACOSX_DEPLOYMENT_TARGET = 26.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.uhimania.ZipViewerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = ZipViewer;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.1;
 			};
 			name = Release;
@@ -586,25 +372,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA3C7A072EC5AAC000D70764 /* Build configuration list for PBXNativeTarget "ZipViewerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CA3C7A082EC5AAC000D70764 /* Debug */,
-				CA3C7A092EC5AAC000D70764 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CA3C7A0A2EC5AAC000D70764 /* Build configuration list for PBXNativeTarget "ZipViewerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CA3C7A0B2EC5AAC000D70764 /* Debug */,
-				CA3C7A0C2EC5AAC000D70764 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA3C7A192EC5AC1500D70764 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = exactVersion;
+				version = 0.9.20;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA3C7A1A2EC5AC1500D70764 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA3C7A192EC5AC1500D70764 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA3C79DB2EC5AABF00D70764 /* Project object */;
 }
