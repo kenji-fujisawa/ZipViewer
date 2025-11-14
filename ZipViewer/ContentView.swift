@@ -9,42 +9,6 @@ import SwiftUI
 import UniformTypeIdentifiers
 import ZIPFoundation
 
-#if os(macOS)
-typealias OSImage = NSImage
-#else
-typealias OSImage = UIImage
-#endif
-
-struct ZipItem: Identifiable, Hashable {
-    let id = UUID()
-    var archive: Archive
-    var entry: Entry
-    
-    var filename: String {
-        String(entry.path.split(separator: "/").last ?? "")
-    }
-    
-    var image: OSImage? {
-        var _data = Data()
-        do {
-            let _ = try archive.extract(entry) { data in
-                _data.append(data)
-            }
-        } catch {
-            print(error)
-        }
-        return OSImage(data: _data)
-    }
-    
-    static func == (lhs: ZipItem, rhs: ZipItem) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-}
-
 struct ContentView: View {
     @Environment(AppDelegate.self) private var appDelegate
     @State private var showImporter: Bool = false
@@ -148,55 +112,6 @@ struct ContentView: View {
                 self.selected = items[index - 1]
             }
         }
-    }
-    
-    private struct SidebarView: View {
-        @Binding var items: [ZipItem]
-        @Binding var selected: ZipItem?
-        
-        var body: some View {
-            List(items, selection: $selected) { item in
-                NavigationLink(value: item) {
-                    Spacer()
-                    VStack {
-                        if let img = item.image {
-                            Image(image: img)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
-                        }
-                        Text(item.filename)
-                    }
-                    Spacer()
-                }
-            }
-        }
-    }
-    
-    private struct DetailView: View {
-        @Binding var item: ZipItem?
-        
-        var body: some View {
-            if let item = item,
-               let img = item.image {
-                ScrollView {
-                    Image(image: img)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                }
-            }
-        }
-    }
-}
-
-extension Image {
-    init(image: OSImage) {
-        #if os(macOS)
-        self.init(nsImage: image)
-        #else
-        self.init(uiImage: image)
-        #endif
     }
 }
 
