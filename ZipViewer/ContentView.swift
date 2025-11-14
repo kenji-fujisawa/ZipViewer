@@ -126,6 +126,9 @@ struct ContentView: View {
                let img = item.image {
                 ScrollView {
                     Image(nsImage: img)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
                 }
             }
         }
