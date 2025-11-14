@@ -44,15 +44,15 @@ struct ContentView: View {
     @State private var showImporter: Bool = false
     @State private var items: [ZipItem] = []
     @State private var selected: ZipItem? = nil
+    @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
     
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(items: $items, selected: $selected)
         } detail: {
             DetailView(item: $selected)
                 .id(selected?.id)
         }
-        .padding()
         .focusedSceneValue(\.openFileAction, OpenFileAction(showImporter: { showImporter = true }))
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.zip], allowsMultipleSelection: false) { result in
             switch result {
