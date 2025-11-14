@@ -50,6 +50,7 @@ struct ContentView: View {
             SidebarView(items: $items, selected: $selected)
         } detail: {
             DetailView(item: $selected)
+                .id(selected?.id)
         }
         .padding()
         .focusedSceneValue(\.openFileAction, OpenFileAction(showImporter: { showImporter = true }))
