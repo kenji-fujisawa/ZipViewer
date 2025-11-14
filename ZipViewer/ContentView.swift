@@ -53,6 +53,7 @@ struct ContentView: View {
             DetailView(item: $selected)
                 .id(selected?.id)
         }
+        .windowToolbarFullScreenVisibility(.onHover)
         .gesture(
             DragGesture().onEnded { value in
                 if value.translation.width < -50 {
@@ -62,6 +63,11 @@ struct ContentView: View {
                 }
             }
         )
+        .onTapGesture(count: 2) {
+            if let window = NSApp.keyWindow {
+                window.toggleFullScreen(nil)
+            }
+        }
         .focusedSceneValue(\.openFileAction, OpenFileAction(showImporter: { showImporter = true }))
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.zip], allowsMultipleSelection: false) { result in
             switch result {
