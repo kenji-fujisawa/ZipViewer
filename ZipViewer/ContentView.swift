@@ -157,6 +157,7 @@ struct ContentView: View {
         var body: some View {
             List(items, selection: $selected) { item in
                 NavigationLink(value: item) {
+                    Spacer()
                     VStack {
                         if let img = item.image {
                             Image(image: img)
@@ -166,6 +167,7 @@ struct ContentView: View {
                         }
                         Text(item.filename)
                     }
+                    Spacer()
                 }
             }
         }
