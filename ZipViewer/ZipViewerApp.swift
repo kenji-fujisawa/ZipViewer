@@ -9,7 +9,11 @@ import SwiftUI
 
 @main
 struct ZipViewerApp: App {
+    #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    #else
+    @State private var appDelegate = AppDelegate()
+    #endif
     
     var body: some Scene {
         WindowGroup {
@@ -25,6 +29,7 @@ struct ZipViewerApp: App {
     }
 }
 
+#if os(macOS)
 @Observable
 class AppDelegate: NSObject, NSApplicationDelegate {
     var urls: [URL] = []
@@ -37,3 +42,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         true
     }
 }
+#else
+@Observable
+class AppDelegate {
+    var urls: [URL] = []
+}
+#endif

@@ -9,6 +9,12 @@ import SwiftUI
 import UniformTypeIdentifiers
 import ZIPFoundation
 
+#if os(macOS)
+typealias OSImage = NSImage
+#else
+typealias OSImage = UIImage
+#endif
+
 struct ZipItem: Identifiable, Hashable {
     let id = UUID()
     var archive: Archive
@@ -18,7 +24,7 @@ struct ZipItem: Identifiable, Hashable {
         String(entry.path.split(separator: "/").last ?? "")
     }
     
-    var image: NSImage? {
+    var image: OSImage? {
         var _data = Data()
         do {
             let _ = try archive.extract(entry) { data in
@@ -27,7 +33,7 @@ struct ZipItem: Identifiable, Hashable {
         } catch {
             print(error)
         }
-        return NSImage(data: _data)
+        return OSImage(data: _data)
     }
     
     static func == (lhs: ZipItem, rhs: ZipItem) -> Bool {
@@ -46,6 +52,14 @@ struct ContentView: View {
     @State private var selected: ZipItem? = nil
     @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
     
+    private var windowToolbarFullScreenVisibility: WindowToolbarFullScreenVisibility {
+        #if os(macOS)
+        .onHover
+        #else
+        .automatic
+        #endif
+    }
+    
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(items: $items, selected: $selected)
@@ -53,7 +67,7 @@ struct ContentView: View {
             DetailView(item: $selected)
                 .id(selected?.id)
         }
-        .windowToolbarFullScreenVisibility(.onHover)
+        .windowToolbarFullScreenVisibility(windowToolbarFullScreenVisibility)
         .gesture(
             DragGesture().onEnded { value in
                 if value.translation.width < -50 {
@@ -64,9 +78,11 @@ struct ContentView: View {
             }
         )
         .onTapGesture(count: 2) {
+            #if os(macOS)
             if let window = NSApp.keyWindow {
                 window.toggleFullScreen(nil)
             }
+            #endif
         }
         .focusedSceneValue(\.openFileAction, OpenFileAction(showImporter: { showImporter = true }))
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.zip], allowsMultipleSelection: false) { result in
@@ -143,7 +159,7 @@ struct ContentView: View {
                 NavigationLink(value: item) {
                     VStack {
                         if let img = item.image {
-                            Image(nsImage: img)
+                            Image(image: img)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
@@ -162,13 +178,23 @@ struct ContentView: View {
             if let item = item,
                let img = item.image {
                 ScrollView {
-                    Image(nsImage: img)
+                    Image(image: img)
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
                 }
             }
         }
+    }
+}
+
+extension Image {
+    init(image: OSImage) {
+        #if os(macOS)
+        self.init(nsImage: image)
+        #else
+        self.init(uiImage: image)
+        #endif
     }
 }
 
