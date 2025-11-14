@@ -53,6 +53,15 @@ struct ContentView: View {
             DetailView(item: $selected)
                 .id(selected?.id)
         }
+        .gesture(
+            DragGesture().onEnded { value in
+                if value.translation.width < -50 {
+                    moveNext()
+                } else if value.translation.width > 50 {
+                    movePrevious()
+                }
+            }
+        )
         .focusedSceneValue(\.openFileAction, OpenFileAction(showImporter: { showImporter = true }))
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.zip], allowsMultipleSelection: false) { result in
             switch result {
@@ -94,6 +103,28 @@ struct ContentView: View {
         
         if let item = items.first {
             selected = item
+        }
+    }
+    
+    private func moveNext() {
+        if let selected = selected,
+           let index = items.firstIndex(of: selected) {
+            if index == items.count - 1 {
+                self.selected = items.first
+            } else {
+                self.selected = items[index + 1]
+            }
+        }
+    }
+    
+    private func movePrevious() {
+        if let selected = selected,
+           let index = items.firstIndex(of: selected) {
+            if index == 0 {
+                self.selected = items.last
+            } else {
+                self.selected = items[index - 1]
+            }
         }
     }
     
