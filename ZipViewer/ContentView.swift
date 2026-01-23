@@ -30,6 +30,17 @@ struct ContentView: View {
         } detail: {
             DetailView(item: $selected)
                 .id(selected?.id)
+                .focusable()
+                .onKeyPress { press in
+                    if press.key == .rightArrow {
+                        moveNext()
+                        return .handled
+                    } else if press.key == .leftArrow {
+                        movePrevious()
+                        return .handled
+                    }
+                    return .ignored
+                }
         }
         .windowToolbarFullScreenVisibility(windowToolbarFullScreenVisibility)
         .gesture(

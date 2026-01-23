@@ -9,15 +9,34 @@ import SwiftUI
 
 struct DetailView: View {
     @Binding var item: ZipItem?
+    @FocusState private var focused: Bool
     
     var body: some View {
         if let item = item,
            let img = item.image {
-            ScrollView {
-                Image(image: img)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
+            ScrollViewReader { proxy in
+                ScrollView {
+                    Image(image: img)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .id("image")
+                }
+                .focusable()
+                .focused($focused)
+                .onKeyPress { press in
+                    if press.key == .upArrow {
+                        proxy.scrollTo("image", anchor: .top)
+                        return .handled
+                    } else if press.key == .downArrow {
+                        proxy.scrollTo("image", anchor: .bottom)
+                        return .handled
+                    }
+                    return .ignored
+                }
+                .onAppear {
+                    focused = true
+                }
             }
         }
     }
