@@ -26,10 +26,23 @@ struct ContentView: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            SidebarView(items: $items, selected: $selected)
+            if columnVisibility != .detailOnly {
+                SidebarView(items: $items, selected: $selected)
+            }
         } detail: {
             DetailView(item: $selected)
                 .id(selected?.id)
+                .focusable()
+                .onKeyPress { press in
+                    if press.key == .rightArrow {
+                        moveNext()
+                        return .handled
+                    } else if press.key == .leftArrow {
+                        movePrevious()
+                        return .handled
+                    }
+                    return .ignored
+                }
         }
         .windowToolbarFullScreenVisibility(windowToolbarFullScreenVisibility)
         .gesture(
