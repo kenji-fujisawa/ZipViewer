@@ -26,7 +26,9 @@ struct ContentView: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            SidebarView(items: $items, selected: $selected)
+            if columnVisibility != .detailOnly {
+                SidebarView(items: $items, selected: $selected)
+            }
         } detail: {
             DetailView(item: $selected)
                 .id(selected?.id)
