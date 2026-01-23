@@ -15,7 +15,7 @@ struct SidebarView: View {
         List(items, selection: $selected) { item in
             NavigationLink(value: item) {
                 Spacer()
-                VStack {
+                LazyVStack {
                     if let img = item.image {
                         Image(image: img)
                             .resizable()
