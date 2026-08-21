@@ -100,6 +100,8 @@ struct ContentView: View {
             print(error)
         }
         
+        items.sort { $0.filename < $1.filename }
+        
         if let item = items.first {
             selected = item
         }
