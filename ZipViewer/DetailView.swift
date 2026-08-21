@@ -9,17 +9,18 @@ import SwiftUI
 
 struct DetailView: View {
     @Binding var item: ZipItem?
+    @Binding var width: CGFloat
     @FocusState private var focused: Bool
     
     var body: some View {
         if let item = item,
            let img = item.image {
             ScrollViewReader { proxy in
-                ScrollView {
+                ScrollView([.horizontal, .vertical]) {
                     Image(image: img)
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: .infinity)
+                        .frame(width: width)
                         .id("image")
                 }
                 .focusable()
@@ -44,5 +45,6 @@ struct DetailView: View {
 
 #Preview {
     @Previewable @State var item: ZipItem? = nil
-    DetailView(item: $item)
+    @Previewable @State var width: CGFloat = 500
+    DetailView(item: $item, width: $width)
 }
