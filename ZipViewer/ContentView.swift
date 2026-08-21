@@ -60,6 +60,7 @@ struct ContentView: View {
             #if os(macOS)
             if let window = NSApp.keyWindow {
                 window.toggleFullScreen(nil)
+                resetWidth()
             }
             #endif
         }
@@ -113,6 +114,10 @@ struct ContentView: View {
             selected = item
         }
         
+        resetWidth()
+    }
+    
+    private func resetWidth() {
         #if os(macOS)
         width = NSApplication.shared.mainWindow?.frame.width ?? 100
         #else
