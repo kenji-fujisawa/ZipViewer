@@ -15,6 +15,8 @@ struct ContentView: View {
     @State private var items: [ZipItem] = []
     @State private var selected: ZipItem? = nil
     @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
+    @State private var width: CGFloat = 0
+    @State private var initialWidth: CGFloat = 0
     
     private var windowToolbarFullScreenVisibility: WindowToolbarFullScreenVisibility {
         #if os(macOS)
@@ -30,7 +32,7 @@ struct ContentView: View {
                 SidebarView(items: $items, selected: $selected)
             }
         } detail: {
-            DetailView(item: $selected)
+            DetailView(item: $selected, width: $width)
                 .id(selected?.id)
                 .focusable()
                 .onKeyPress { press in
@@ -58,10 +60,16 @@ struct ContentView: View {
             #if os(macOS)
             if let window = NSApp.keyWindow {
                 window.toggleFullScreen(nil)
+                resetWidth()
             }
             #endif
         }
         .focusedSceneValue(\.openFileAction, OpenFileAction(showImporter: { showImporter = true }))
+        .focusedSceneValue(\.zoomAction, ZoomAction(
+            zoomIn: { width += 100 },
+            zoomOut: { width = max(width - 100, 100) },
+            zoomReset: { width = initialWidth }
+        ))
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.zip], allowsMultipleSelection: false) { result in
             switch result {
             case .success(let urls):
@@ -100,9 +108,22 @@ struct ContentView: View {
             print(error)
         }
         
+        items.sort { $0.filename < $1.filename }
+        
         if let item = items.first {
             selected = item
         }
+        
+        resetWidth()
+    }
+    
+    private func resetWidth() {
+        #if os(macOS)
+        width = NSApplication.shared.mainWindow?.frame.width ?? 100
+        #else
+        width = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width ?? 100
+        #endif
+        initialWidth = width
     }
     
     private func moveNext() {

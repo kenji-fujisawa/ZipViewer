@@ -25,6 +25,7 @@ struct ZipViewerApp: App {
             CommandGroup(replacing: .pasteboard) {}
             CommandGroup(replacing: .undoRedo) {}
             OpenFileCommands()
+            ZoomCommands()
         }
     }
 }
