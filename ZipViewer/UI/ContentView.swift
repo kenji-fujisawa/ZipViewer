@@ -9,12 +9,9 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ContentView: View {
-    @Environment(AppDelegate.self) private var appDelegate
-    let viewModel: ZipViewModel
+    @Bindable var viewModel: ZipViewModel
     @State private var showImporter: Bool = false
     @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
-    @State private var width: CGFloat = 0
-    @State private var initialWidth: CGFloat = 0
     
     private var windowToolbarFullScreenVisibility: WindowToolbarFullScreenVisibility {
         #if os(macOS)
@@ -30,7 +27,7 @@ struct ContentView: View {
                 SidebarView(viewModel: viewModel)
             }
         } detail: {
-            DetailView(entry: viewModel.selected, width: $width)
+            DetailView(entry: viewModel.selected, width: $viewModel.imageWidth)
                 .id(viewModel.selected?.id)
                 .focusable()
                 .onKeyPress { press in
@@ -58,15 +55,15 @@ struct ContentView: View {
             #if os(macOS)
             if let window = NSApp.keyWindow {
                 window.toggleFullScreen(nil)
-                resetWidth()
+                viewModel.initWidth()
             }
             #endif
         }
         .focusedSceneValue(\.openFileAction, OpenFileAction(showImporter: { showImporter = true }))
         .focusedSceneValue(\.zoomAction, ZoomAction(
-            zoomIn: { width += 100 },
-            zoomOut: { width = max(width - 100, 100) },
-            zoomReset: { width = initialWidth }
+            zoomIn: { viewModel.zoomIn() },
+            zoomOut: { viewModel.zoomOut() },
+            zoomReset: { viewModel.zoomReset() }
         ))
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.zip], allowsMultipleSelection: false) { result in
             switch result {
@@ -75,7 +72,7 @@ struct ContentView: View {
                     guard url.startAccessingSecurityScopedResource() else { return }
                     defer { url.stopAccessingSecurityScopedResource() }
                     viewModel.load(url: url)
-                    resetWidth()
+                    viewModel.initWidth()
                 }
             case .failure(let error):
                 print(error)
@@ -84,24 +81,9 @@ struct ContentView: View {
         .dropDestination(for: URL.self) { items, session in
             if let url = items.first {
                 viewModel.load(url: url)
-                resetWidth()
+                viewModel.initWidth()
             }
         }
-        .onChange(of: appDelegate.urls) { _, _ in
-            if let url = appDelegate.urls.first {
-                viewModel.load(url: url)
-                resetWidth()
-            }
-        }
-    }
-    
-    private func resetWidth() {
-        #if os(macOS)
-        width = NSApplication.shared.mainWindow?.frame.width ?? 100
-        #else
-        width = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width ?? 100
-        #endif
-        initialWidth = width
     }
 }
 

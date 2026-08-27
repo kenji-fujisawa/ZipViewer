@@ -5,7 +5,7 @@
 //  Created by uhimania on 2026/08/26.
 //
 
-import Foundation
+import SwiftUI
 
 @Observable
 class ZipViewModel {
@@ -27,9 +27,11 @@ class ZipViewModel {
     
     var entries: [Entry] = []
     var selected: Entry? = nil
+    var imageWidth: CGFloat = 0
     var error: String? = nil
     
     @ObservationIgnored private let repository: FileRepository
+    @ObservationIgnored private var initialWidth: CGFloat = 0
     
     init(_ repository: FileRepository) {
         self.repository = repository
@@ -66,5 +68,27 @@ class ZipViewModel {
                 selected = entries[index - 1]
             }
         }
+    }
+    
+    func initWidth() {
+        #if os(macOS)
+        initialWidth = NSApplication.shared.mainWindow?.frame.width ?? 100
+        #else
+        initialWidth = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width ?? 100
+        #endif
+        imageWidth = initialWidth
+    }
+    
+    func zoomIn() {
+        imageWidth *= 1.2
+    }
+    
+    func zoomOut() {
+        imageWidth *= 0.8
+        imageWidth = max(imageWidth, 100)
+    }
+    
+    func zoomReset() {
+        imageWidth = initialWidth
     }
 }
