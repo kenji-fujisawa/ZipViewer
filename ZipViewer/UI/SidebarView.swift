@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct SidebarView: View {
-    @Binding var items: [ZipItem]
-    @Binding var selected: ZipItem?
+    @Bindable var viewModel: ZipViewModel
     
     var body: some View {
-        List(items, selection: $selected) { item in
-            NavigationLink(value: item) {
+        List(viewModel.entries, selection: $viewModel.selected) { entry in
+            NavigationLink(value: entry) {
                 Spacer()
                 LazyVStack {
-                    if let img = item.image {
+                    if let img = entry.image {
                         Image(image: img)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)
                     }
-                    Text(item.filename)
+                    Text(entry.filename)
                 }
                 Spacer()
             }
@@ -31,7 +30,11 @@ struct SidebarView: View {
 }
 
 #Preview {
-    @Previewable @State var items: [ZipItem] = []
-    @Previewable @State var selected: ZipItem? = nil
-    SidebarView(items: $items, selected: $selected)
+    let repository = FakeFileRepository()
+    let viewModel = ZipViewModel(repository)
+    SidebarView(viewModel: viewModel)
+}
+
+private class FakeFileRepository: FileRepository {
+    func getEntries(of url: URL) throws -> [any FileEntry] { [] }
 }

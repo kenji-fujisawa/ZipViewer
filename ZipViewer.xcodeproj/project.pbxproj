@@ -10,8 +10,19 @@
 		CA3C7A1B2EC5AC1500D70764 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CA3C7A1A2EC5AC1500D70764 /* ZIPFoundation */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CAD43035303EB18C006C13E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA3C79DB2EC5AABF00D70764 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA3C79E22EC5AABF00D70764;
+			remoteInfo = ZipViewer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		CA3C79E32EC5AABF00D70764 /* ZipViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZipViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAD43031303EB18C006C13E9 /* ZipViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZipViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -33,6 +44,11 @@
 			path = ZipViewer;
 			sourceTree = "<group>";
 		};
+		CAD43032303EB18C006C13E9 /* ZipViewerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ZipViewerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +60,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CAD4302E303EB18C006C13E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -51,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				CA3C79E52EC5AABF00D70764 /* ZipViewer */,
+				CAD43032303EB18C006C13E9 /* ZipViewerTests */,
 				CA3C79E42EC5AABF00D70764 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				CA3C79E32EC5AABF00D70764 /* ZipViewer.app */,
+				CAD43031303EB18C006C13E9 /* ZipViewerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +114,29 @@
 			productReference = CA3C79E32EC5AABF00D70764 /* ZipViewer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CAD43030303EB18C006C13E9 /* ZipViewerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAD43037303EB18C006C13E9 /* Build configuration list for PBXNativeTarget "ZipViewerTests" */;
+			buildPhases = (
+				CAD4302D303EB18C006C13E9 /* Sources */,
+				CAD4302E303EB18C006C13E9 /* Frameworks */,
+				CAD4302F303EB18C006C13E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CAD43036303EB18C006C13E9 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CAD43032303EB18C006C13E9 /* ZipViewerTests */,
+			);
+			name = ZipViewerTests;
+			packageProductDependencies = (
+			);
+			productName = ZipViewerTests;
+			productReference = CAD43031303EB18C006C13E9 /* ZipViewerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -96,11 +144,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2610;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					CA3C79E22EC5AABF00D70764 = {
 						CreatedOnToolsVersion = 26.1;
+					};
+					CAD43030303EB18C006C13E9 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = CA3C79E22EC5AABF00D70764;
 					};
 				};
 			};
@@ -122,12 +174,20 @@
 			projectRoot = "";
 			targets = (
 				CA3C79E22EC5AABF00D70764 /* ZipViewer */,
+				CAD43030303EB18C006C13E9 /* ZipViewerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA3C79E12EC5AABF00D70764 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAD4302F303EB18C006C13E9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -144,7 +204,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CAD4302D303EB18C006C13E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CAD43036303EB18C006C13E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA3C79E22EC5AABF00D70764 /* ZipViewer */;
+			targetProxy = CAD43035303EB18C006C13E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CA3C7A022EC5AAC000D70764 /* Debug */ = {
@@ -297,7 +372,6 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -342,12 +416,61 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.1;
+			};
+			name = Release;
+		};
+		CAD43038303EB18C006C13E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.uhimania.ZipViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipViewer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ZipViewer";
+				XROS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Debug;
+		};
+		CAD43039303EB18C006C13E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.uhimania.ZipViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipViewer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ZipViewer";
+				XROS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Release;
 		};
@@ -368,6 +491,15 @@
 			buildConfigurations = (
 				CA3C7A052EC5AAC000D70764 /* Debug */,
 				CA3C7A062EC5AAC000D70764 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CAD43037303EB18C006C13E9 /* Build configuration list for PBXNativeTarget "ZipViewerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAD43038303EB18C006C13E9 /* Debug */,
+				CAD43039303EB18C006C13E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

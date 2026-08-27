@@ -14,10 +14,17 @@ struct ZipViewerApp: App {
     #else
     @State private var appDelegate = AppDelegate()
     #endif
+    @State private var viewModel: ZipViewModel
+    
+    init() {
+        let source = DefaultZipDataSource()
+        let repository = DefaultFileRepository(source)
+        viewModel = ZipViewModel(repository)
+    }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
                 .environment(appDelegate)
         }
         .commands {

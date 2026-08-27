@@ -7,13 +7,11 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-import ZIPFoundation
 
 struct ContentView: View {
     @Environment(AppDelegate.self) private var appDelegate
+    let viewModel: ZipViewModel
     @State private var showImporter: Bool = false
-    @State private var items: [ZipItem] = []
-    @State private var selected: ZipItem? = nil
     @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
     @State private var width: CGFloat = 0
     @State private var initialWidth: CGFloat = 0
@@ -29,18 +27,18 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             if columnVisibility != .detailOnly {
-                SidebarView(items: $items, selected: $selected)
+                SidebarView(viewModel: viewModel)
             }
         } detail: {
-            DetailView(item: $selected, width: $width)
-                .id(selected?.id)
+            DetailView(entry: viewModel.selected, width: $width)
+                .id(viewModel.selected?.id)
                 .focusable()
                 .onKeyPress { press in
                     if press.key == .rightArrow {
-                        moveNext()
+                        viewModel.moveNext()
                         return .handled
                     } else if press.key == .leftArrow {
-                        movePrevious()
+                        viewModel.movePrevious()
                         return .handled
                     }
                     return .ignored
@@ -50,9 +48,9 @@ struct ContentView: View {
         .gesture(
             DragGesture().onEnded { value in
                 if value.translation.width < -50 {
-                    moveNext()
+                    viewModel.moveNext()
                 } else if value.translation.width > 50 {
-                    movePrevious()
+                    viewModel.movePrevious()
                 }
             }
         )
@@ -76,7 +74,8 @@ struct ContentView: View {
                 if let url = urls.first {
                     guard url.startAccessingSecurityScopedResource() else { return }
                     defer { url.stopAccessingSecurityScopedResource() }
-                    loadEntries(url: url)
+                    viewModel.load(url: url)
+                    resetWidth()
                 }
             case .failure(let error):
                 print(error)
@@ -84,37 +83,16 @@ struct ContentView: View {
         }
         .dropDestination(for: URL.self) { items, session in
             if let url = items.first {
-                loadEntries(url: url)
+                viewModel.load(url: url)
+                resetWidth()
             }
         }
         .onChange(of: appDelegate.urls) { _, _ in
             if let url = appDelegate.urls.first {
-                loadEntries(url: url)
+                viewModel.load(url: url)
+                resetWidth()
             }
         }
-    }
-    
-    private func loadEntries(url: URL) {
-        items.removeAll()
-        
-        do {
-            let archive = try Archive(url: url, accessMode: .read)
-            for entry in archive {
-                if entry.path.last != "/" {
-                    items.append(ZipItem(archive: archive, entry: entry))
-                }
-            }
-        } catch {
-            print(error)
-        }
-        
-        items.sort { $0.filename < $1.filename }
-        
-        if let item = items.first {
-            selected = item
-        }
-        
-        resetWidth()
     }
     
     private func resetWidth() {
@@ -125,30 +103,14 @@ struct ContentView: View {
         #endif
         initialWidth = width
     }
-    
-    private func moveNext() {
-        if let selected = selected,
-           let index = items.firstIndex(of: selected) {
-            if index == items.count - 1 {
-                self.selected = items.first
-            } else {
-                self.selected = items[index + 1]
-            }
-        }
-    }
-    
-    private func movePrevious() {
-        if let selected = selected,
-           let index = items.firstIndex(of: selected) {
-            if index == 0 {
-                self.selected = items.last
-            } else {
-                self.selected = items[index - 1]
-            }
-        }
-    }
 }
 
 #Preview {
-    ContentView()
+    let repository = FakeFileRepository()
+    let viewModel = ZipViewModel(repository)
+    ContentView(viewModel: viewModel)
+}
+
+private class FakeFileRepository: FileRepository {
+    func getEntries(of url: URL) throws -> [any FileEntry] { [] }
 }
