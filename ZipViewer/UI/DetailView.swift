@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct DetailView: View {
-    @Binding var item: ZipItem?
+    let entry: ZipViewModel.Entry?
     @Binding var width: CGFloat
     @FocusState private var focused: Bool
     
     var body: some View {
-        if let item = item,
-           let img = item.image {
+        if let entry = entry,
+           let img = entry.image {
             ScrollViewReader { proxy in
                 ScrollView([.horizontal, .vertical]) {
                     Image(image: img)
@@ -44,7 +44,17 @@ struct DetailView: View {
 }
 
 #Preview {
-    @Previewable @State var item: ZipItem? = nil
     @Previewable @State var width: CGFloat = 500
-    DetailView(item: $item, width: $width)
+    let entry = FakeFileEntry(filename: "")
+    DetailView(entry: ZipViewModel.Entry(entry: entry), width: $width)
+}
+
+private class FakeFileEntry: FileEntry {
+    var filename: String
+    var image: OSImage?
+    
+    init(filename: String, image: OSImage? = nil) {
+        self.filename = filename
+        self.image = image
+    }
 }
