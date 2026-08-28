@@ -72,7 +72,7 @@ class ZipViewModel {
     
     func initWidth() {
         #if os(macOS)
-        initialWidth = NSApplication.shared.mainWindow?.frame.width ?? 100
+        initialWidth = NSApplication.shared.windows.first?.frame.width ?? 100
         #else
         initialWidth = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width ?? 100
         #endif
