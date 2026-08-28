@@ -55,7 +55,7 @@ struct ContentView: View {
             #if os(macOS)
             if let window = NSApp.keyWindow {
                 window.toggleFullScreen(nil)
-                viewModel.initWidth()
+                viewModel.initWidth(ZipViewerApp.windowWidth ?? 100)
             }
             #endif
         }
@@ -72,7 +72,7 @@ struct ContentView: View {
                     guard url.startAccessingSecurityScopedResource() else { return }
                     defer { url.stopAccessingSecurityScopedResource() }
                     viewModel.load(url: url)
-                    viewModel.initWidth()
+                    viewModel.initWidth(ZipViewerApp.windowWidth ?? 100)
                 }
             case .failure(let error):
                 print(error)
@@ -81,7 +81,7 @@ struct ContentView: View {
         .dropDestination(for: URL.self) { items, session in
             if let url = items.first {
                 viewModel.load(url: url)
-                viewModel.initWidth()
+                viewModel.initWidth(ZipViewerApp.windowWidth ?? 100)
             }
         }
     }

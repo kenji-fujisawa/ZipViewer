@@ -70,13 +70,9 @@ class ZipViewModel {
         }
     }
     
-    func initWidth() {
-        #if os(macOS)
-        initialWidth = NSApplication.shared.windows.first?.frame.width ?? 100
-        #else
-        initialWidth = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width ?? 100
-        #endif
-        imageWidth = initialWidth
+    func initWidth(_ width: CGFloat) {
+        initialWidth = width
+        imageWidth = width
     }
     
     func zoomIn() {

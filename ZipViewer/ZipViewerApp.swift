@@ -23,7 +23,7 @@ struct ZipViewerApp: App {
         appDelegate.onOpenURL = { [viewModel] urls in
             if let url = urls.first {
                 viewModel.load(url: url)
-                viewModel.initWidth()
+                viewModel.initWidth(ZipViewerApp.windowWidth ?? 100)
             }
         }
         #endif
@@ -56,3 +56,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 #endif
+
+extension ZipViewerApp {
+    static var windowWidth: CGFloat? {
+        #if os(macOS)
+        NSApplication.shared.windows.first?.frame.width
+        #else
+        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width
+        #endif
+    }
+}

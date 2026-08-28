@@ -70,6 +70,33 @@ struct ZipViewModelTests {
         #expect(viewModel.selected?.filename == "aaa")
     }
     
+    @Test func testImageWidth() async throws {
+        let repository = FakeFileRepository()
+        let viewModel = ZipViewModel(repository)
+        #expect(viewModel.imageWidth == 0)
+        
+        viewModel.initWidth(200)
+        #expect(viewModel.imageWidth == 200)
+        
+        viewModel.zoomIn()
+        #expect(viewModel.imageWidth == 240)
+        
+        viewModel.zoomOut()
+        #expect(viewModel.imageWidth == 192)
+        
+        viewModel.zoomReset()
+        #expect(viewModel.imageWidth == 200)
+        
+        viewModel.initWidth(100)
+        #expect(viewModel.imageWidth == 100)
+        
+        viewModel.zoomIn()
+        #expect(viewModel.imageWidth == 120)
+        
+        viewModel.zoomOut()
+        #expect(viewModel.imageWidth == 100)
+    }
+    
     class FakeFileEntry: FileEntry {
         var filename: String
         var image: OSImage?
