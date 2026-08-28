@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+#if os(macOS)
+typealias OSImage = NSImage
+#else
+typealias OSImage = UIImage
+#endif
+
 extension Image {
     init(image: OSImage) {
         #if os(macOS)

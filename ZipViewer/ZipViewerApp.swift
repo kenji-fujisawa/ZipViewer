@@ -11,14 +11,27 @@ import SwiftUI
 struct ZipViewerApp: App {
     #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-    #else
-    @State private var appDelegate = AppDelegate()
     #endif
+    @State private var viewModel: ZipViewModel
+    
+    init() {
+        let source = DefaultZipDataSource()
+        let repository = DefaultFileRepository(source)
+        viewModel = ZipViewModel(repository)
+        
+        #if os(macOS)
+        appDelegate.onOpenURL = { [viewModel] urls in
+            if let url = urls.first {
+                viewModel.load(url: url)
+                viewModel.initWidth(ZipViewerApp.windowWidth ?? 100)
+            }
+        }
+        #endif
+    }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(appDelegate)
+            ContentView(viewModel: viewModel)
         }
         .commands {
             CommandGroup(replacing: .newItem) {}
@@ -31,21 +44,25 @@ struct ZipViewerApp: App {
 }
 
 #if os(macOS)
-@Observable
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var urls: [URL] = []
+    var onOpenURL: ([URL]) -> Void = { _ in }
     
     func application(_ application: NSApplication, open urls: [URL]) {
-        self.urls = urls
+        onOpenURL(urls)
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         true
     }
 }
-#else
-@Observable
-class AppDelegate {
-    var urls: [URL] = []
-}
 #endif
+
+extension ZipViewerApp {
+    static var windowWidth: CGFloat? {
+        #if os(macOS)
+        NSApplication.shared.windows.first?.frame.width
+        #else
+        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width
+        #endif
+    }
+}
